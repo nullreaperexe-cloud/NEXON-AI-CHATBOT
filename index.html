@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script>
+      // Safeguard against the Sandboxed iframe read-only getter issue
+      try {
+        const originalFetch = window.fetch;
+        Object.defineProperty(window, 'fetch', {
+          get() { return originalFetch; },
+          set(val) { console.warn('NEXON Grid Shield: Prevented attempt to override window.fetch.', val); },
+          configurable: true,
+          enumerable: true
+        });
+      } catch (e) {
+        console.warn('NEXON Grid Shield: could not configure window.fetch setter, attempting globalThis override.', e);
+        try {
+          const originalFetch = globalThis.fetch;
+          Object.defineProperty(globalThis, 'fetch', {
+            get() { return originalFetch; },
+            set(val) { console.warn('NEXON Grid Shield: Prevented attempt to override globalThis.fetch.', val); },
+            configurable: true,
+            enumerable: true
+          });
+        } catch (err) {
+          console.error('NEXON Grid Shield: Failed to apply fetch write guards.', err);
+        }
+      }
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEXON AI Chatbot</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

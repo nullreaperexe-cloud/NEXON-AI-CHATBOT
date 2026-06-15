@@ -1,0 +1,8 @@
+{
+  "name": "NEXON AI Chatbot",
+  "description": "A premium, cyberpunk-themed high-interactive AI Chatbot web application powered by Google Gemini.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
